@@ -441,7 +441,7 @@ p.destaque-icon
 
 .hidden-icons.show {
     display: flex;
-    max-height: 500px; /* Ajuste para um valor alto suficiente */
+    max-height: 700px; /* Ajuste para um valor alto suficiente */
     opacity: 1;
 }
 
@@ -945,7 +945,7 @@ div.noticias-por-produto h2 {
 
 
 .logo {
-  font-size: 17px;
+  font-size: 15px;
   font-family: "Inter", sans-serif;
   font-weight: 400;
 }
@@ -953,52 +953,70 @@ div.noticias-por-produto h2 {
 .company-logo {
   height: 30px;
 }
-    .menu {
-      display: none !important;
-    }
 
-    .menu.show {
-      display: flex;
-    }
+
+.search-container {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  width: 300px;
+  margin-left: 0px;
+}
+
+
+.search-box {
+  margin-bottom: 3px;
+}
+
+
+
+.menu {
+  display: none !important;
+}
+
+.menu.show {
+   display: flex;
+}
   
-    .menu-toggle {
-    display: block !important;
-    position: absolute;
-    right: 20px;
-    top: 15px;
-    font-size: 28px;
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    }
+.menu-toggle {
+  display: block !important;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
 
 
-    .dropdown-menu {
-      background: rgba(50, 50, 50, 0.9); /* Cor diferente no mobile */
-      position: relative;
-      left: 20px; /* Move o menu um pouco para a direita */
-      width: calc(100% - 40px); /* Ajuste para caber melhor */
-      text-align: left;
-      padding: 5px;
-      margin-top: 10px;
-      border-radius: 5px;
-    }
+.dropdown-menu {
+  background: rgba(50, 50, 50, 0.9); /* Cor diferente no mobile */
+  position: relative;
+  left: 20px; /* Move o menu um pouco para a direita */
+  width: calc(100% - 40px); /* Ajuste para caber melhor */
+  text-align: left;
+  padding: 5px;
+  margin-top: 10px;
+  border-radius: 5px;
+}
   
-    .dropdown-menu.show {
-      display: block;
-    }
+.dropdown-menu.show {
+  display: block;
+}
   
-    .dropdown {
-      width: 100%;
-    }
+.dropdown {
+  width: 100%;
+}
 
-    .search-box {
-      margin-bottom: 10px;
-    }
-    .split-section {
-      flex-direction: column;
-    }
+
+.split-section {
+   flex-direction: column;
+  }
     .video-carousel .videos iframe {
       width: 100%;
   
