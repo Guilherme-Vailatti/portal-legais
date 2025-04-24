@@ -149,3 +149,21 @@ body {
 .close:hover {
     color: #00c89b;
 }
+
+
+@media (max-width: 500px) {
+    .calendar-header h2 {
+      font-size: 18px;
+    }
+    .calendar-header button {
+      padding: 8px 12px;
+      font-size: 14px;
+    }
+    .day-name, .day {
+      font-size: 12px;
+    }
+    .calendar-grid,
+    #calendarDays.calendar-grid.days {
+      grid-template-columns: repeat(7, minmax(35px, 1fr));
+    }
+  }
