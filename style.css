@@ -671,7 +671,7 @@ p.destaque-icon
   
   .videos {
     display: flex;
-    gap: 10px;
+    gap: 1px;
     transition: transform 0.5s ease-in-out;
     margin-top: 10px;
     margin-bottom: 20px;
@@ -735,6 +735,37 @@ p.destaque-icon
     background-color: #00876c;
   }
 
+
+  .video-thumb {
+    position: relative;
+    width: 320px;
+    height: 240px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    overflow: hidden;
+    transition: all 0.4s ease-in-out;
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  .video-thumb.highlighted {
+    transform: scale(1);
+    opacity: 1;
+    z-index: 1;
+    margin-left: 0px;
+  }
+
+
+  .video-thumb iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+  }
+
+  
 
 
 
@@ -1017,11 +1048,7 @@ div.noticias-por-produto h2 {
 .split-section {
    flex-direction: column;
   }
-    .video-carousel .videos iframe {
-      width: 100%;
-  
-      height: 220px;
-    }
+
   
     .cards-container {
       justify-content: center;
@@ -1035,48 +1062,109 @@ div.noticias-por-produto h2 {
       margin: auto;
     }
 
+    .card-2 {
+      width: 100px; 
+      height: 90px; 
+      padding-top: 10px;
+      border-radius: 6px; 
+      border: 1.5px solid #00C89B;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .card-2 h3 {
+      font-size: 10px;
+    }
+    
+    
+    
+    .card-2 i {
+      font-size: 20px; /* Ícones menores */
+      color: #515151;
+    }
+    
+    .card-2 p {
+      font-size: 10px; /* Texto menor */
+      padding-bottom: 8px;
+    }
+
   
     .divider {
       display: none;
     }
 
-
     .carousel {
-      flex-direction: column;
-      align-items: center;
+      width: 100%; /* ou 100vw para aproveitar todo espaço disponível */
+      margin-left: 0;
+      overflow: hidden;
+      justify-content: flex-start;
     }
-  
+
     .videos-container {
+      width: 100%;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
+      padding-bottom: 10px;
     }
-  
+
+    .video-carousel h3{
+      font-size: 25px;
+    }
+
     .videos {
-      display: flex;
       flex-wrap: nowrap;
       gap: 16px;
       padding: 10px;
-      transition: none;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
     }
   
-    .videos iframe {
+
+    .btn-more-videos {
+      margin-top: 10px;
+    }
+
+
+    .video-thumb {
       min-width: 90%;
+      max-width: 100%;
       height: 220px;
-      flex-shrink: 0;
       scroll-snap-align: center;
-      border-radius: 10px;
-      opacity: 1 !important;
-      transform: scale(1) !important;
+      transform: scale(0.9); /* já aplicado no default */
+    }
+
+    .video-thumb.highlighted {
+      transform: scale(1);
+    }
+  
+    .btn-more-videos {
+      margin-top: 10px;
     }
   
     .carousel-prev,
     .carousel-next {
-      display: none;
+      background-color: transparent;
+      border: none;
+      color: #00C89B;
+      width: 32px;
+      height: 32px;
+      font-size: 22px;
+      font-weight: bold;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s ease, color 0.2s ease;
     }
-    .btn-more-videos {
-      margin-top: 10px;
+    
+    .carousel-prev:hover,
+    .carousel-next:hover {
+      background-color: #00C89B;
+      color: white;
     }
+
 
     .calendar-section {
       flex-direction: column;
