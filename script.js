@@ -32,20 +32,20 @@ document.addEventListener("DOMContentLoaded", function () {
     <li class="mobile-dropdown">
       <a href="#">Destaques</a>
       <ul class="dropdown-menu">
-        <li><a href="https://www.senior.com.br/" target="_blank">Reforma Tributária</a></li>
-        <li><a href="#">eDocs</a></li>
-        <li><a href="#">NFe / NFCe</a></li>
-        <li><a href="#">CT-e</a></li>
-        <li><a href="#">SPED</a></li>
-        <li><a href="#">DIRBI</a></li>
-        <li><a href="#">DCTFWEB</a></li>
-        <li><a href="#">Simples Nacional</a></li>
-        <li><a href="#">FGTS Digital</a></li>
-        <li><a href="#">ICMS ST</a></li>
-        <li><a href="#">EFD - Reinf</a></li>
-        <li><a href="#">DIFAL</a></li>
-        <li><a href="#">Bloco K / Portaria 671</a></li>
-        <li><a href="#">Congresso Nacional</a></li>
+        <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#materias/erp/destaques/reforma-tributaria.htm" target="_blank">Reforma Tributária</a></li>
+        <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#materias/gp/destaque/esocial.htm" target="_blank">eSocial</a></li>
+        <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#materias/erp/destaques/nfe.htm" target="_blank">NFe / NFCe</a></li>
+        <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#materias/erp/destaques/cte.htm" target="_blank">CT-e</a></li>
+        <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#materias/erp/destaques/sped.htm" target="_blank">SPED</a></li>
+        <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#materias/erp/destaques/dirbi.htm" target="_blank">DIRBI</a></li>
+        <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#materias/gp/destaque/dctfweb.htm" target="_blank">DCTFWEB</a></li>
+        <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#materias/erp/destaques/simples-nacional.htm" target="_blank">Simples Nacional</a></li>
+        <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#materias/gp/destaque/fgts-digital.htm" target="_blank">FGTS Digital</a></li>
+        <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#materias/erp/destaques/icms-st.htm" target="_blank">ICMS ST</a></li>
+        <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#materias/erp/destaques/efd-reinf.htm" target="_blank">EFD - Reinf</a></li>
+        <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#materias/erp/destaques/difal.htm" target="_blank">DIFAL</a></li>
+        <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#materias/erp/destaques/bloco-k.htm" target="_blank">Bloco K / Portaria 671</a></li>
+        <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#materias/erp/destaques/congresso-nacional.htm" target="_blank">Congresso Nacional</a></li>
       </ul>
     </li>
     <li class="mobile-dropdown">
@@ -156,37 +156,96 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   const videosContainer = document.querySelector('.videos');
-  const iframes = videosContainer.querySelectorAll('iframe');
+  let thumbs = Array.from(videosContainer.querySelectorAll('.video-thumb'));
   const btnNext = document.querySelector('.carousel-next');
   const btnPrev = document.querySelector('.carousel-prev');
-
+  
   let currentIndex = 0;
-  const visibleVideos = 3;
-
+  let visibleVideos = window.innerWidth <= 768 ? 1 : 3;
+  
   function updateCarousel() {
-    const offset = -currentIndex * 310;
+    const itemWidth = thumbs[0].offsetWidth + 10;
+    const centerIndex = Math.floor(visibleVideos / 2);
+  
+    // Prevent empty space at the beginning
+    const safeIndex = Math.max(currentIndex, centerIndex);
+    const offset = -(safeIndex - centerIndex) * itemWidth;
+    videosContainer.style.transition = 'transform 0.5s ease-in-out';
     videosContainer.style.transform = `translateX(${offset}px)`;
   
-    iframes.forEach(iframe => iframe.classList.remove('highlighted'));
-    const middleIndex = currentIndex;
-    if (iframes[middleIndex]) {
-      iframes[middleIndex].classList.add('highlighted');
+    thumbs.forEach((thumb) => {
+      thumb.classList.remove('highlighted');
+    });
+  
+    if (thumbs[currentIndex]) {
+      thumbs[currentIndex].classList.add('highlighted');
     }
   }
-
+  
+  function addClickListener(thumb) {
+    const videoId = thumb.dataset.videoId;
+    const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+    thumb.style.backgroundImage = `url('${thumbnailUrl}')`;
+  
+    thumb.addEventListener('click', () => {
+      if (thumb.classList.contains('playing')) return;
+  
+      thumb.classList.add('playing');
+      thumb.style.backgroundImage = 'none';
+      thumb.style.backgroundColor = '#000';
+      thumb.style.position = 'relative';
+      thumb.style.zIndex = '1';
+      thumb.innerHTML = '';
+  
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1&enablejsapi=1`;
+      iframe.allowFullscreen = true;
+      iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+      iframe.setAttribute('loading', 'lazy');
+      iframe.setAttribute('id', `player-${videoId}`);
+      iframe.style.width = '100%';
+      iframe.style.height = '100%';
+      iframe.style.border = 'none';
+  
+      thumb.appendChild(iframe);
+    });
+  }
+  
   btnNext.addEventListener('click', () => {
-    if (currentIndex + visibleVideos < iframes.length) {
-      currentIndex++;
-      updateCarousel();
-    }
+    currentIndex = (currentIndex + 1) % thumbs.length;
+    updateCarousel();
   });
-
+  
   btnPrev.addEventListener('click', () => {
-    if (currentIndex > 0) {
-      currentIndex--;
-      updateCarousel();
-    }
+    currentIndex = (currentIndex - 1 + thumbs.length) % thumbs.length;
+    updateCarousel();
   });
-
+  
+  thumbs.forEach(addClickListener);
+  
+  window.addEventListener('resize', () => {
+    visibleVideos = window.innerWidth <= 768 ? 1 : 3;
+    updateCarousel();
+  });
+  
+  if (window.innerWidth <= 768) {
+    videosContainer.style.overflowX = 'scroll';
+    videosContainer.style.scrollSnapType = 'x mandatory';
+    videosContainer.style.webkitOverflowScrolling = 'touch';
+    videosContainer.style.paddingBottom = '10px';
+    videosContainer.style.scrollBehavior = 'smooth';
+  
+    videosContainer.classList.add('mobile-scroll');
+  
+    thumbs.forEach(thumb => {
+      thumb.style.minWidth = '90%';
+      thumb.style.height = '220px';
+      thumb.style.scrollSnapAlign = 'center';
+      thumb.style.flexShrink = '0';
+      thumb.style.marginRight = '16px';
+      thumb.classList.add('highlighted');
+    });
+  }
+  
   updateCarousel();
 });
