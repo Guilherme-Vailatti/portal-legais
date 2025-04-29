@@ -970,6 +970,47 @@ div.noticias-por-produto h2 {
     opacity: 0.6;
   }
 
+  .menu-footer .container {
+    display: flex;
+    justify-content: center; /* centraliza o grupo */
+    align-items: center;
+    gap: 40px; /* espaço entre menu e botão */
+    flex-wrap: wrap; /* quebra no mobile */
+    padding: 20px;
+  }
+  
+  /* Agrupa os navs horizontalmente e centraliza */
+  .menu-central {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  /* Botão de Ajuda */
+  .btn-ajuda {
+    background-color: #ffffff;
+    color: #008267;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 30px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background 0.3s ease;
+    white-space: nowrap;
+  }
+  
+  .btn-ajuda:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Garante que o menu-footer tenha posição relativa para ancorar o botão */
+  .menu-footer {
+    position: relative;
+  }
+  
+
 
   /* Responsivo */
   @media (max-width: 768px) {
@@ -1210,6 +1251,25 @@ div.noticias-por-produto h2 {
       content: none !important;
     }
 
+    .menu-footer .container {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 20px;
+    }
+  
+    .menu-bloco {
+      width: 100%;
+    }
+  
+    .botao-ajuda-container {
+      width: 100%;
+    }
+  
+    .btn-ajuda {
+      width: 50%;
+      text-align: center;
+    }
     
 
   }
