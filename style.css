@@ -1102,10 +1102,7 @@ div.noticias-por-produto h2 {
 
     .videos-container {
       width: 100%;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: 10px;
+      overflow: hidden;
     }
 
     .video-carousel h3{
@@ -1113,11 +1110,7 @@ div.noticias-por-produto h2 {
     }
 
     .videos {
-      flex-wrap: nowrap;
-      gap: 16px;
-      padding: 10px;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
+      gap: 0;
     }
   
 
@@ -1127,11 +1120,13 @@ div.noticias-por-produto h2 {
 
 
     .video-thumb {
-      min-width: 90%;
+      min-width: 100%;
       max-width: 100%;
       height: 220px;
-      scroll-snap-align: center;
-      transform: scale(0.9); /* já aplicado no default */
+      scroll-snap-align: unset;
+      transform: none;
+      opacity: 1;
+      margin-right: 0;
     }
 
     .video-thumb.highlighted {
@@ -1144,6 +1139,7 @@ div.noticias-por-produto h2 {
   
     .carousel-prev,
     .carousel-next {
+      display: flex;
       background-color: transparent;
       border: none;
       color: #00C89B;
