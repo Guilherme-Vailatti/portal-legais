@@ -156,30 +156,25 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   const videosContainer = document.querySelector('.videos');
-  let thumbs = Array.from(videosContainer.querySelectorAll('.video-thumb'));
+  const thumbs = Array.from(videosContainer.querySelectorAll('.video-thumb'));
   const btnNext = document.querySelector('.carousel-next');
   const btnPrev = document.querySelector('.carousel-prev');
   
   let currentIndex = 0;
-  let visibleVideos = window.innerWidth <= 768 ? 1 : 3;
+  
+  function isMobile() {
+    return window.innerWidth <= 768;
+  }
   
   function updateCarousel() {
-    const itemWidth = thumbs[0].offsetWidth + 10;
-    const centerIndex = Math.floor(visibleVideos / 2);
-  
-    // Prevent empty space at the beginning
-    const safeIndex = Math.max(currentIndex, centerIndex);
-    const offset = -(safeIndex - centerIndex) * itemWidth;
+    const itemWidth = thumbs[0].offsetWidth;
+    const offset = -currentIndex * itemWidth;
     videosContainer.style.transition = 'transform 0.5s ease-in-out';
     videosContainer.style.transform = `translateX(${offset}px)`;
   
-    thumbs.forEach((thumb) => {
-      thumb.classList.remove('highlighted');
+    thumbs.forEach((thumb, i) => {
+      thumb.classList.toggle('highlighted', i === currentIndex);
     });
-  
-    if (thumbs[currentIndex]) {
-      thumbs[currentIndex].classList.add('highlighted');
-    }
   }
   
   function addClickListener(thumb) {
@@ -193,8 +188,6 @@ document.addEventListener("DOMContentLoaded", function () {
       thumb.classList.add('playing');
       thumb.style.backgroundImage = 'none';
       thumb.style.backgroundColor = '#000';
-      thumb.style.position = 'relative';
-      thumb.style.zIndex = '1';
       thumb.innerHTML = '';
   
       const iframe = document.createElement('iframe');
@@ -202,7 +195,6 @@ document.addEventListener("DOMContentLoaded", function () {
       iframe.allowFullscreen = true;
       iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
       iframe.setAttribute('loading', 'lazy');
-      iframe.setAttribute('id', `player-${videoId}`);
       iframe.style.width = '100%';
       iframe.style.height = '100%';
       iframe.style.border = 'none';
@@ -224,28 +216,10 @@ document.addEventListener("DOMContentLoaded", function () {
   thumbs.forEach(addClickListener);
   
   window.addEventListener('resize', () => {
-    visibleVideos = window.innerWidth <= 768 ? 1 : 3;
     updateCarousel();
   });
   
-  if (window.innerWidth <= 768) {
-    videosContainer.style.overflowX = 'scroll';
-    videosContainer.style.scrollSnapType = 'x mandatory';
-    videosContainer.style.webkitOverflowScrolling = 'touch';
-    videosContainer.style.paddingBottom = '10px';
-    videosContainer.style.scrollBehavior = 'smooth';
-  
-    videosContainer.classList.add('mobile-scroll');
-  
-    thumbs.forEach(thumb => {
-      thumb.style.minWidth = '90%';
-      thumb.style.height = '220px';
-      thumb.style.scrollSnapAlign = 'center';
-      thumb.style.flexShrink = '0';
-      thumb.style.marginRight = '16px';
-      thumb.classList.add('highlighted');
-    });
-  }
-  
   updateCarousel();
+  
+  
 });
