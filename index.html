@@ -6,7 +6,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Kumbh+Sans:wght@100..900&family=Lexend+Exa:wght@100..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+
   <link rel="shortcut icon" type="imagex/png" href="images/icon.ico">
   <title>Portal de Exigências Legais</title>
   <link rel="stylesheet" href="style.css" />
@@ -63,15 +64,16 @@
                 <li class="dropdown">
                   <a href="#">Notícias</a>
                   <ul class="dropdown-menu">
-                    <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#calendario-de-liberacao/edocs.htm" target="_blank">Todas as notícias</a></li>
+                    <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#trabalhista-previdenciario.htm" target="_blank">Previdenciário/Trabalhista</a></li>
+                    <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#federal.htm" target="_blank">Federal</a></li>
+                    <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#estadual.htm">Estadual</a></li>
+                    <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#materias/todas-noticias-exigencias-legais.htm" target="_blank">Todas as notícias</a></li>
                   </ul>
                 </li>
                 <li class="dropdown">
                   <a href="#">Outros</a>
                   <ul class="dropdown-menu">
-                    <li>Opção 1</li>
-                    <li>Opção 2</li>
-                    <li>Opção 3</li>
+                    <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#materias/documentoseletronicos/cidades-homologadas-para-envio-e-recebimento-de-nfse.htm">NFS-e - Cidades Homologadas</a></li>
                   </ul>
                 </li>
               </ul>
@@ -335,7 +337,7 @@
 
            <a href="https://documentacao.senior.com.br/exigenciaslegais/#calendario-de-liberacao/erp-x.htm">
             <div class="card-2">
-            <i class="fas fa-briefcase"></i>
+              <i class="fas fa-briefcase"></i>
             <h3>ERP X</h3>
             <p>Gestão Empresarial</p>
             </div>
@@ -384,7 +386,12 @@
       <section class="marketing-banner">
         <div class="container">
           <a href="https://materiais.senior.com.br/monitor-legal-senior" target="_blank">
-            <img src="images/banner-exemplo.png" alt="Marketing banner" />
+            <picture>
+              <!-- Imagem para telas menores que 768px -->
+              <source media="(max-width: 767px)" srcset="images/banner-mobile.png" />
+              <!-- Imagem padrão para telas maiores -->
+              <img src="images/banner-exemplo.png" alt="Marketing banner" />
+            </picture>
           </a>
         </div>
       </section>
@@ -441,7 +448,7 @@
         <div class="coluna-noticias-recentes-pel">
           <h3>Notícias Recentes</h3>
           
-          <div class="noticias-recentes-pel"><a href="Materias/ERP/2025/2025-03-25-definidas-as-datas-de-obrigatoriedade-para-nf3e-e-nfcom.htm"><table><col /><tr><td class="noticias-recentes-texto"><p class="noticias-recentes-data">25/03/2025</p><p class="noticias-recentes-titulo"><b>ICMS SP</b> - Portaria SRE nº 14/2025 - Definidas as datas de obrigatoriedade para a NF3e e NFCom</p></td></tr></table></a>
+          <div class="noticias-recentes-pel"><a href="../noticia/index.html"><table><col /><tr><td class="noticias-recentes-texto"><p class="noticias-recentes-data">25/03/2025</p><p class="noticias-recentes-titulo"><b>ICMS SP</b> - Portaria SRE nº 14/2025 - Definidas as datas de obrigatoriedade para a NF3e e NFCom</p></td></tr></table></a>
           </div>
           <div class="noticias-recentes-pel"><a href="Materias/ERP/2025/2025-03-25-receita-federal-informa-limite-de-15bi-para-perse-foi-atingido-e-beneficio-fiscal-sera-extinto.htm"><table><col /><tr><td class="noticias-recentes-texto"><p class="noticias-recentes-data">25/03/2025</p><p class="noticias-recentes-titulo"><b>Federal</b> - ADE RFB nº 02/2025 - Receita Federal informa que o limite legal de R$ 15 bilhões para o PERSE foi atingido e o benefício fiscal será extinto</p></td></tr></table></a>
           </div>
