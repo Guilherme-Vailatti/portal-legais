@@ -51,27 +51,28 @@ document.addEventListener("DOMContentLoaded", function () {
     <li class="mobile-dropdown">
       <a href="#">Calendário</a>
       <ul class="dropdown-menu">
-        <li><a href="#">ERP XT</a></li>
-        <li><a href="#">HCM XT</a></li>
-        <li><a href="#">TMS XT</a></li>
-        <li><a href="#">eDocs</a></li>
-        <li><a href="#">ERP X</a></li>
-        <li><a href="#">ERP MEGA XT</a></li>
-        <li><a href="#">UAU XT</a></li>
+        <li><a href="https://documentacao.senior.com.br/exigenciaslegais/calendario-de-liberacao/erp.htm" target="_blank">ERP XT</a></li>
+        <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#calendario-de-liberacao/erp-x.htm" target="_blank">ERP X</a></li>
+        <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#calendario-de-liberacao/erp-mega-xt.htm" target="_blank">ERP MEGA XT</a></li>
+        <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#calendario-de-liberacao/uau-xt.htm" target="_blank">UAU XT</a></li>
+        <li><a href="https://documentacao.senior.com.br/exigenciaslegais/calendario-de-liberacao/hcm.htm" target="_blank">HCM XT</a></li>
+        <li><a href="https://documentacao.senior.com.br/exigenciaslegais/calendario-de-liberacao/tms.htm" target="_blank">TMS XT</a></li>
+        <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#calendario-de-liberacao/edocs.htm" target="_blank">eDocs</a></li>
       </ul>
     </li>
     <li class="mobile-dropdown">
       <a href="#">Notícias</a>
       <ul class="dropdown-menu">
-        <li><a href="#">Todas as notícias</a></li>
+      <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#trabalhista-previdenciario.htm" target="_blank">Previdenciário/Trabalhista</a></li>
+      <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#federal.htm" target="_blank">Federal</a></li>
+      <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#estadual.htm">Estadual</a></li>
+      <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#materias/todas-noticias-exigencias-legais.htm" target="_blank">Todas as notícias</a></li>
       </ul>
     </li>
     <li class="mobile-dropdown">
       <a href="#">Outros</a>
       <ul class="dropdown-menu">
-        <li><a href="#">Opção 1</a></li>
-        <li><a href="#">Opção 2</a></li>
-        <li><a href="#">Opção 3</a></li>
+        <li><a href="https://documentacao.senior.com.br/exigenciaslegais/#materias/documentoseletronicos/cidades-homologadas-para-envio-e-recebimento-de-nfse.htm">NFS-e - Cidades Homologadas</a></li>
       </ul>
     </li>
   </ul>
@@ -223,3 +224,53 @@ document.addEventListener("DOMContentLoaded", function () {
   
   
 });
+
+// MODAL FEEDBACK //
+
+// Abre o modal ao clicar em qualquer botão de feedback
+document.querySelectorAll('.btn-feedback').forEach(button => {
+  button.addEventListener('click', () => {
+    document.getElementById('feedbackModal').style.display = 'block';
+  });
+});
+
+// Fecha o modal ao clicar no "X"
+document.querySelector('.close-modal').addEventListener('click', () => {
+  document.getElementById('feedbackModal').style.display = 'none';
+});
+
+// Fecha ao clicar fora da área do modal
+window.addEventListener('click', (event) => {
+  const modal = document.getElementById('feedbackModal');
+  if (event.target === modal) {
+    modal.style.display = 'none';
+  }
+});
+
+document.getElementById('enviarComentario').addEventListener('click', () => {
+  const comentario = document.getElementById('comentario').value.trim();
+  const consentimento = document.getElementById('consentimento').checked;
+
+  if (!comentario) {
+    alert('Por favor, escreva um comentário.');
+    return;
+  }
+
+  if (!consentimento) {
+    alert('É necessário concordar com a Política de Privacidade.');
+    return;
+  }
+
+  // Aqui poderia enviar o comentário via fetch() ou integração
+  alert('Comentário enviado com sucesso! Obrigado pelo feedback.');
+
+  // Fecha o modal após envio
+  document.getElementById('feedbackModal').style.display = 'none';
+
+  // Limpa campos
+  document.getElementById('comentario').value = '';
+  document.getElementById('nomeEmail').value = '';
+  document.getElementById('consentimento').checked = false;
+});
+
+
